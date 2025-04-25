@@ -24,17 +24,24 @@ function App() {
  const[choiceOne, setChoiceOne] = useState(null);
   const[choiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
+  const [showAll, setShowAll] = useState(true);
+  const [gameOver, setGameOver] = useState(false);
+ 
 
   const shuffleCards = () => {
     const shuffled = [...cardImages, ...cardImages]
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }));
-    setChoiceOne(null);
-    setChoiceTwo(null);
     setCards(shuffled);
     setTurns(0);
-    
-  }
+    setChoiceOne(null);
+    setChoiceTwo(null);
+    setShowAll(true);
+    setDisabled(false);
+    setTimeout(() => {
+      setShowAll(false);
+    }, 2000);
+  };
 
   const handleChoice = (card) => {
    console.log(card);
@@ -44,7 +51,6 @@ function App() {
       setChoiceTwo(card);
     }
   };
-
 useEffect(() => {
   if (choiceOne && choiceTwo) {
       setDisabled(true);
@@ -77,6 +83,15 @@ useEffect(() => {
   }
   , []);
 
+  useEffect(() => {
+    if (cards.length && cards.every(card => card.matched)) {
+      setTimeout(() => {
+        setGameOver(true);
+      }, 500);
+    }
+  }, [cards]);
+  
+ console.log(cards);
   return (
     <div className="App">
       <h1>Memory Game</h1>
@@ -90,11 +105,24 @@ useEffect(() => {
          key={card.id}
           card={card} 
           handleChoice={handleChoice}
-          flipped={card === choiceOne || card === choiceTwo || card.matched}
+          flipped={showAll || card === choiceOne || card === choiceTwo || card.matched}
           disabled={disabled}
           />
        ))}
       </div>
+      {gameOver && (
+  <div className="modal">
+    <div className="modal-content">
+      <h2>🎉 Congratulations!</h2>
+      <p>You finished the game in {turns} turns.</p>
+      <button onClick={() => {
+        shuffleCards();
+        setGameOver(false);
+      }}>Play Again</button>
+    </div>
+  </div>
+)}
+
     </div>
     
   );
