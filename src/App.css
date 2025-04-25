@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Raleway', sans-serif;
+  background-color: #232526;
+  color: #fff;
+}
+.App {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Raleway', sans-serif;
+  color: #fff;
+  padding-bottom: 30px;
+  background: linear-gradient(-45deg, #b185db, #cdb4db, #ffc8dd, #ffafcc);
+  background-size: 400% 400%;
+  animation: gradientFlow 12s ease infinite;
+}
+
+@keyframes gradientFlow {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+.App h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+button{
+  background: none;
+  border: 2px solid  #fff;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1em;
+}
+button:hover {
+  background-color: #fff;
+  color: #232526;
+  transition: background-color 0.3s, color 0.3s;
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 160px);
+  grid-gap: 10px;
+  margin-top: 25px;
+}
+.card {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin: 7px;
+  position: relative;
+}
+
+
+.card .front{
+  transform:rotateY(90deg);
+  transition: transform 0.3s;
+  position: absolute;
+  width: 100px;
+ 
+}
+
+.flipped .front{
+  transform:rotateY(0deg);
+  transition: transform 0.3s;
+  transition-delay: 0.1s;
+}
+.card .back{
+  transition: all ease-in 0.2s;
+  transition-delay: 0.1s;
+ 
+}
+.flipped .back{
+  transform:rotateY(90deg);
+  transition-delay: 0s;
+
+}
+.back {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+}
+.turns{
+  font-size: 1.5rem;
+  margin-top: 15px;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  text-align: center;
+  
+}
+
+  
+
