@@ -8,7 +8,6 @@ import nodejs from './assets/nodejs.png';
 import reactLogo from './assets/react.png';
 import Card from './components/Card';
 
-
 const cardImages = [
   { src: angular ,matched: false },
   { src: css ,matched: false },
@@ -21,7 +20,7 @@ const cardImages = [
 function App() {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
- const[choiceOne, setChoiceOne] = useState(null);
+  const[choiceOne, setChoiceOne] = useState(null);
   const[choiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
   const [showAll, setShowAll] = useState(true);
@@ -44,7 +43,6 @@ function App() {
   };
 
   const handleChoice = (card) => {
-   console.log(card);
     if (!choiceOne) {
       setChoiceOne(card);
     } else {
@@ -91,7 +89,6 @@ useEffect(() => {
     }
   }, [cards]);
   
- console.log(cards);
   return (
     <div className="App">
       <h1>Memory Game</h1>
